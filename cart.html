@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — ShopNest</title>
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+
+  <div class="topbar">✦ Free shipping on orders above ₹999. <a href="shop.html">Keep Shopping</a></div>
+
+  <nav>
+    <div class="container inner">
+      <a href="index.html" class="logo">Shop<span>Nest</span>.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <div class="search-box">
+        <input type="text" placeholder="Search products...">
+        <span>🔍</span>
+      </div>
+      <div class="nav-icons">
+        <a href="login.html">👤</a>
+        <a href="#">🤍</a>
+        <a href="cart.html" class="cart-link">🛒<span class="badge">0</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container cart-page">
+
+    <div class="cart-header-row">
+      <h1>Your Cart 🛒</h1>
+      <a href="shop.html" class="cart-back-link">← Continue Shopping</a>
+    </div>
+
+    <div class="cart-layout">
+
+      <div>
+        <div class="cart-table">
+          <div class="cart-head">
+            <span>Product</span>
+            <span>Qty</span>
+            <span>Price</span>
+            <span>Total</span>
+            <span></span>
+          </div>
+          <div id="cart-items"></div>
+        </div>
+
+        <div class="clear-cart-wrap">
+          <button class="btn-clear" onclick="clearCart()">🗑 Clear Cart</button>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h3>Order Summary</h3>
+        <div class="srow"><span>Subtotal</span><span id="s-sub">₹0</span></div>
+        <div class="srow discount"><span>Discount (10%)</span><span id="s-disc">-₹0</span></div>
+        <div class="srow"><span>Shipping</span><span id="s-ship">₹99</span></div>
+        <div class="srow grand"><span>Total</span><span id="s-total">₹0</span></div>
+        <div class="coupon">
+          <input type="text" id="coupon" placeholder="Coupon code">
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
+        <div class="trust-info">
+          <span>🔒 Secure SSL checkout</span>
+          <span>🔄 30-day easy returns</span>
+          <span>🚚 Free shipping above ₹999</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-logo">Shop<span>Nest</span>.</a>
+          <p>Your go-to for fashion, electronics, and lifestyle.</p>
+          <div class="socials"><a href="#">📘</a><a href="#">📸</a><a href="#">🐦</a></div>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Electronics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ShopNest</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/main.js"></script>
+  <script>
+    function clearCart() {
+      if (!cart.length) return;
+      if (confirm('Remove all items from cart?')) {
+        cart = [];
+        saveCart();
+        updateBadge();
+        renderCart();
+      }
+    }
+
+    function applyCoupon() {
+      const val = document.getElementById('coupon').value.trim().toUpperCase();
+      if (val === 'SAVE10' || val === 'SHOPNEST') toast('Coupon applied!');
+      else toast('Invalid coupon code', 'err');
+    }
+
+    function checkout() {
+      if (!cart.length) { toast('Your cart is empty', 'err'); return; }
+      toast('Redirecting to checkout...');
+      setTimeout(() => alert('Checkout coming soon!\n\nThanks for shopping at ShopNest 🎉'), 1400);
+    }
+  </script>
+</body>
+
+</html>
